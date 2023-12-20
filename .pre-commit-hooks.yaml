@@ -1,0 +1,6 @@
+- id: clang-tidy
+  name: clang-tidy
+  description: Find warnings/errors in C, C++, and Objective-C code
+  entry: clang-tidy-hook
+  language: python
+  types_or: [c, c++, c#, objective-c]
