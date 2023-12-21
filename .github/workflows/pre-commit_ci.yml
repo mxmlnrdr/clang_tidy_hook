@@ -1,6 +1,6 @@
 # This workflow will install Python dependencies and execute repo's pre-commit hooks on all files.
 
-name: pre-commit hooks‚
+name: Code check
 
 on:
   push:
