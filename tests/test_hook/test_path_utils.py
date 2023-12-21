@@ -7,7 +7,7 @@ from hook.path_utils import (
 )
 
 
-def test_extract_file_pathes() -> None:
+def test_extract_file_pathes():
     input_args = [
         "tests/test_hook/__init__.py",
         "tests/test_hook/test_path_utils.py",
