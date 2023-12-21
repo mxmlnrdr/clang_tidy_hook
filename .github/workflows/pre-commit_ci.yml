@@ -9,7 +9,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  pre-commit-check:
 
     runs-on: ubuntu-latest
     strategy:
