@@ -27,7 +27,7 @@ repos:
         minimum_pre_commit_version: 2.9.2
         require_serial: true
         types_or: [ python, pyi ]
-        args: [ --line-length=80 ]
+        args: [ --line-length=79 ]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
@@ -39,6 +39,7 @@ repos:
         language: python
         types: [ python ]
         require_serial: true
+        args: [ --max-line-length=79, --ignore=E203 ]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.7.1
