@@ -4,6 +4,7 @@ from hook.path_utils import (
     extract_file_pathes,
     convert_to_relative_pathes,
     match_absolute_pathes_based_on_relative_pathes,
+    extract_header_pathes,
 )
 
 
@@ -64,4 +65,20 @@ def test_match_absolute_pathes_based_on_relative_pathes() -> None:
         relative_pathes=input_pathes_relative,
     )
 
+    assert result == expected_output
+
+
+def test_extract_header_pathes() -> None:
+    input_files = [
+        "tests/test_hook/dummy_header.hpp",
+        "tests/test_hook/dummy_source.cpp",
+        "/tests/test_hook/example_header.h",
+        "/tests/test_hook/example_source.c",
+    ]
+    expected_output = [
+        "tests/test_hook/dummy_header.hpp",
+        "/tests/test_hook/example_header.h",
+    ]
+
+    result = extract_header_pathes(files=input_files)
     assert result == expected_output
