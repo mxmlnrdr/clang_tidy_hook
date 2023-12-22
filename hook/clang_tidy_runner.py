@@ -15,7 +15,7 @@ class ClangTidyRunner:
         stdout = b""
         stderr = b""
         output = b""
-        returncode = 0
+        return_code = 0
 
         for filename in self.files:
             call_argument = (
@@ -31,9 +31,9 @@ class ClangTidyRunner:
             stderr += sp_child.stderr
             output += sp_child.stdout
             output += sp_child.stderr
-            returncode = max(sp_child.returncode, returncode)
+            return_code = max(sp_child.returncode, return_code)
         # --fix-errors returns 0 even if there are errors
         if len(stderr) > 0 and "--fix-errors" in self.args:
-            returncode = 1
+            return_code = 1
         sys.stderr.buffer.write(output)
-        sys.exit(returncode)
+        sys.exit(return_code)
