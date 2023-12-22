@@ -5,6 +5,7 @@ from hook.path_utils import (
     convert_to_relative_pathes,
     match_absolute_pathes_based_on_relative_pathes,
     extract_header_pathes,
+    match_absolute_headers_in_include_dirs,
 )
 
 
@@ -81,4 +82,36 @@ def test_extract_header_pathes() -> None:
     ]
 
     result = extract_header_pathes(files=input_files)
+    assert result == expected_output
+
+
+def test_match_absolute_headers_in_include_dirs() -> None:
+    header_input = [
+        "tests/first_directory/first_header.hpp",
+        "/tests/second_directory/second_header.h",
+        "/tests/third_directory/third_header.h",
+        "/tests/fourth_directory/fourth_header.h",
+        "/tests/fifth_directory/fifth_header.h",
+        "/tests/seventh_header.h",
+    ]
+
+    include_directories = [
+        "tests/first_directory/",
+        "/tests/second_directory",
+        "dummy_path_absolute/tests/third_directory/",
+        "dummy_pathes_absolute/tests/fourth_directory",
+        "dummy_pathes_absolute/tests/sixth_directory",
+    ]
+
+    expected_output = [
+        "tests/first_directory/first_header.hpp",
+        "/tests/second_directory/second_header.h",
+        "dummy_path_absolute/tests/third_directory/third_header.h",
+        "dummy_pathes_absolute/tests/fourth_directory/fourth_header.h",
+    ]
+
+    result = match_absolute_headers_in_include_dirs(
+        headers=header_input, include_dirs=include_directories
+    )
+
     assert result == expected_output
