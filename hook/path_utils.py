@@ -6,6 +6,14 @@ def extract_file_pathes(argument_list: List[str]) -> List[str]:
     return [f for f in argument_list if os.path.exists(f)]
 
 
+def extract_arguments(input_arguments: List[str]) -> List[str]:
+    extracted_arguments = []
+    for arg in input_arguments:
+        if arg.startswith("-"):
+            extracted_arguments.append(arg)
+    return extracted_arguments
+
+
 def convert_to_relative_pathes(input_pathes: List[str]) -> List[str]:
     return [os.path.relpath(path) for path in input_pathes]
 
