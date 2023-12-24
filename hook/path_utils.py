@@ -24,7 +24,7 @@ def match_absolute_pathes_based_on_relative_pathes(
     matched_files = [
         absolute
         for absolute in absolute_pathes
-        if any(relative in absolute for relative in relative_pathes)
+        if any(absolute.endswith(relative) for relative in relative_pathes)
     ]
     return matched_files
 
