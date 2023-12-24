@@ -1,5 +1,4 @@
 import subprocess
-import sys
 from typing import List
 
 from clang_tidy import _get_executable as clang_tidy_get_exe
@@ -11,7 +10,7 @@ class ClangTidyRunner:
         self.files = source_files
         self.args = args
 
-    def run(self) -> None:
+    def run(self) -> tuple[int, bytes]:
         stdout = b""
         stderr = b""
         output = b""
@@ -35,5 +34,5 @@ class ClangTidyRunner:
         # --fix-errors returns 0 even if there are errors
         if len(stderr) > 0 and "--fix-errors" in self.args:
             return_code = 1
-        sys.stderr.buffer.write(output)
-        sys.exit(return_code)
+
+        return return_code, output

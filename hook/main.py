@@ -37,8 +37,11 @@ def main(argv: List[str] = sys.argv) -> None:
     arguments = extract_arguments(argv)
     arguments.append("-p=" + compile_db.__str__())
     logging.debug("Arguments: " + " ".join(arguments))
+
     cmd = ClangTidyRunner(arguments, compiled_files)
-    cmd.run()
+    return_code, output = cmd.run()
+    sys.stderr.buffer.write(output)
+    sys.exit(return_code)
 
 
 if __name__ == "__main__":
