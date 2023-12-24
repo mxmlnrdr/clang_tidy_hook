@@ -1,3 +1,4 @@
+import os
 import shutil
 
 from cmake import _program as cmake_caller
@@ -18,4 +19,5 @@ def execute_cmake_dummy_project() -> None:
 
 
 def clean_cmake_dummy_project() -> None:
-    shutil.rmtree(BUILD_FOLDER)
+    if os.path.exists(BUILD_FOLDER):
+        shutil.rmtree(BUILD_FOLDER)
