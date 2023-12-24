@@ -9,6 +9,7 @@ from tests.test_hook.cmake_helper import (
 from hook.compile_db_utils import (
     find_compilation_database,
     extract_source_file_list,
+    extract_include_directories,
 )
 
 
@@ -44,6 +45,22 @@ def test_extract_source_file_list() -> None:
     ]
 
     result = extract_source_file_list(compile_db_path=compile_db_path)
+    clean_cmake_dummy_project()
+
+    assert result == expected_result
+
+
+def test_extract_include_directory_list() -> None:
+    execute_cmake_dummy_project()
+    compile_db_path = os.path.join(
+        "./" + BUILD_FOLDER + "/" + "compile_commands.json"
+    )
+    current_work_dir = os.path.normpath(os.path.join(os.getcwd()))
+    expected_result = [
+        current_work_dir + "/" + "tests/test_hook" "/dummy_project/include"
+    ]
+
+    result = extract_include_directories(compile_db_path=compile_db_path)
     clean_cmake_dummy_project()
 
     assert result == expected_result
