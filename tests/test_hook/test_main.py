@@ -1,4 +1,3 @@
-import sys
 import pytest
 
 from hook.main import main
@@ -6,19 +5,6 @@ from tests.test_hook.cmake_helper import (
     execute_cmake_dummy_project,
     clean_cmake_dummy_project,
 )
-
-
-def dummy_function() -> None:
-    sys.stderr.write("Nothing to do here.\n")
-    sys.exit(1)
-
-
-def test_dummy(capsys) -> None:  # type: ignore
-    with pytest.raises(SystemExit) as execution_info:
-        dummy_function()
-    out, err = capsys.readouterr()
-    assert execution_info.value.code == 1
-    assert err == "Nothing to do here.\n"
 
 
 def test_main_no_compilation_database(capsys) -> None:  # type: ignore
