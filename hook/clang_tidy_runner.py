@@ -1,5 +1,5 @@
 import subprocess
-from typing import List
+from typing import List, Tuple
 
 from clang_tidy import _get_executable as clang_tidy_get_exe
 
@@ -10,7 +10,7 @@ class ClangTidyRunner:
         self.files = source_files
         self.args = args
 
-    def run(self) -> tuple[int, bytes]:
+    def run(self) -> Tuple[int, bytes]:
         stdout = b""
         stderr = b""
         output = b""
