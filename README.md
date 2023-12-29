@@ -15,6 +15,13 @@ A pre-commit hook implementation for usage of clang-tidy.
 ## Limitations
 - compilation database has to be available within repository (preceding execution of cmake required by user). Details about compilation database can be found [here](https://clang.llvm.org/docs/JSONCompilationDatabase.html).
 
-## Source
-Work inspired by:
-https://github.com/pocc/pre-commit-hooks/
+## Contribution
+To develop on this codebase & execute the tests:
+```
+python -m pip install -e '.[test]'
+```
+
+## Acknowledgments
+* `clang-tidy` itself is [provided by the LLVM project](https://github.com/llvm/llvm-project) under the Apache 2.0 License with LLVM exceptions.
+* [pre-commit framework](https://pre-commit.com/) for managing and maintaining multi-language pre-commit hooks
+* Work for this pre-commit hook inspired by: [Ross Jacob's pre-commit-hooks](https://github.com/pocc/pre-commit-hooks)
