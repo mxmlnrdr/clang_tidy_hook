@@ -1,3 +1,6 @@
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![build status](https://github.com/mxmlnrdr/clang_tidy_hook/actions/workflows/pre-commit_ci.yml/badge.svg)](https://github.com/mxmlnrdr/clang_tidy_hook/actions/workflows/pre-commit_ci.yml)
+[![build status](https://github.com/mxmlnrdr/clang_tidy_hook/actions/workflows/pytest.yml/badge.svg)](https://github.com/mxmlnrdr/clang_tidy_hook/actions/workflows/pytest.yml)
 # clang_tidy_hook
 A pre-commit hook implementation for usage of clang-tidy.
 
