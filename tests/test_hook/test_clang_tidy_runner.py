@@ -33,7 +33,25 @@ def test_clang_tidy_runner_error_found() -> None:
     ]
 
     input_files = [
-        "tests/test_hook/dummy_project/err.c",
+        "tests/test_hook/dummy_project/err.cpp",
+    ]
+
+    runner = ClangTidyRunner(args=input_arguments, source_files=input_files)
+    return_code, output = runner.run()
+    clean_cmake_dummy_project()
+
+    assert return_code == 1
+
+
+def test_clang_tidy_runner_error_found_despite_fix_errors() -> None:
+    execute_cmake_dummy_project()
+    input_arguments = [
+        "-p=tests/test_hook/dummy_project/build/compile_commands.json",
+        "--print-all-options",
+        "--fix-errors",
+    ]
+
+    input_files = [
         "tests/test_hook/dummy_project/err.cpp",
     ]
 
