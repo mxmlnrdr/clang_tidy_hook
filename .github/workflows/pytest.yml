@@ -30,4 +30,4 @@ jobs:
         python -m pip install -e .[test]
     - name: Test with pytest
       run: |
-        pytest
+        pytest --cov --cov-report term-missing
