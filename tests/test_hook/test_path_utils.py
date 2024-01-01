@@ -133,3 +133,23 @@ def test_match_absolute_headers_in_include_dirs() -> None:
     )
 
     assert result == expected_output
+
+
+def test_match_absolute_headers_in_include_dirs_parent_level() -> None:
+    header_input = [
+        "tests/first_directory/library_name/first_header.hpp",
+    ]
+
+    include_directories = [
+        "tests/first_directory/",
+    ]
+
+    expected_output = [
+        "tests/first_directory/library_name/first_header.hpp",
+    ]
+
+    result = match_absolute_headers_in_include_dirs(
+        headers=header_input, include_dirs=include_directories
+    )
+
+    assert result == expected_output
