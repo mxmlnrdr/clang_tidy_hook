@@ -17,6 +17,10 @@ A pre-commit hook implementation for usage of clang-tidy.
 
 ## Limitations
 - compilation database has to be available within repository (preceding execution of cmake required by user). Details about compilation database can be found [here](https://clang.llvm.org/docs/JSONCompilationDatabase.html).
+- Hook searches for compilation database. Manual input of compilation database location, e.g. via `-p <PATH_TO_COMPILE_DB>` will not be properly considered by hook.
+
+## Example Usage
+Example usage for a simple C++ CMake-based project can be found [here](https://github.com/mxmlnrdr/dummy_repo).
 
 ## Contribution
 To develop on this codebase & execute the tests:

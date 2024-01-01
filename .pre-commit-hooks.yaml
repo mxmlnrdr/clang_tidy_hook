@@ -4,3 +4,4 @@
   entry: clang-tidy-hook
   language: python
   types_or: [c, c++, c#, objective-c]
+  verbose: true
