@@ -51,4 +51,9 @@ def match_absolute_headers_in_include_dirs(
                 headers_matched_absolute.append(
                     include + "/" + header.split("/")[-1]
                 )
+            elif include.endswith(os.path.dirname(os.path.dirname(header))):
+                header_split = header.split("/")
+                headers_matched_absolute.append(
+                    include + "/" + header_split[-2] + "/" + header_split[-1]
+                )
     return headers_matched_absolute
