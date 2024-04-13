@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "clang-tidy-hook"
 version = "0.0.0"
 dependencies = [
-  "clang-tidy==17.0.1",
+  "clang-tidy==18.1.1",
 ]
 requires-python = ">=3.8"
 
