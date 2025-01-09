@@ -19,6 +19,7 @@ class CompilationDatabase:
         for root, dirs, files in os.walk(path):
             if name in files:
                 self.path = os.path.join(root, name)
+                break
 
     def __extract_include_directories(self) -> None:
         if self.path is not None:
