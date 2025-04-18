@@ -4,6 +4,7 @@ from hook.main import main
 from tests.test_hook.cmake_helper import (
     execute_cmake_dummy_project,
     clean_cmake_dummy_project,
+    BUILD_FOLDER,
 )
 
 
@@ -23,7 +24,8 @@ def test_main_no_compilation_database(capsys) -> None:  # type: ignore
 
     assert execution_info.value.code == 0
     assert (
-        "No compilation database found. " "SKIPPING code checker run.\n" in err
+        "No compilation database found in: ./.SKIPPING code checker run.\n"
+        in err
     )
 
 
@@ -42,7 +44,12 @@ def test_main_no_compiled_files(capsys) -> None:  # type: ignore
     clean_cmake_dummy_project()
 
     assert execution_info.value.code == 0
-    assert "No compiled files to check. " "SKIPPING code checker run.\n" in err
+    assert (
+        "No compiled files to check in compilation database (Path: ./"
+        + BUILD_FOLDER
+        + "/compile_commands.json). SKIPPING code checker run.\n"
+        in err
+    )
 
 
 def test_main_no_error_found(capsys) -> None:  # type: ignore

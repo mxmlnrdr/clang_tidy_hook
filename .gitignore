@@ -133,3 +133,6 @@ dmypy.json
 
 # dummy files created during tests
 tests/test_hook/dummy_project/build/
+
+# macOS
+.DS_Store
