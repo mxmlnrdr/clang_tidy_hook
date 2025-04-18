@@ -1,32 +1,36 @@
-import os
 import json
+import os
 from typing import List, Union
 
 
 class CompilationDatabase:
-    def __init__(self) -> None:
+    def __init__(self, location: str) -> None:
         self.path: Union[str, None] = None
         self.include_directories: List[str] = []
         self.source_files: List[str] = []
-        self.__find_compilation_database()
+        self.__find_compilation_database(location)
         if self.is_existing():
             self.__extract_include_directories()
             self.__extract_source_file_list()
 
-    def __find_compilation_database(self) -> None:
+    def __find_compilation_database(self, location: str = "./") -> None:
         name = "compile_commands.json"
-        path = "./"
-        for root, dirs, files in os.walk(path):
-            if name in files:
-                self.path = os.path.join(root, name)
-                break
+        if os.path.exists(location):
+            if location.endswith(name):
+                self.path = location
+                return
+            search_directory = os.path.dirname(location)
+            for root, dirs, files in os.walk(search_directory):
+                if name in files:
+                    self.path = os.path.join(root, name)
+                    break
 
     def __extract_include_directories(self) -> None:
         if self.path is not None:
             with open(self.path) as json_data:
                 data = json.load(json_data)
                 json_data.close()
-            entries = [entry.__str__() for entry in data]
+            entries = [str(entry) for entry in data]
             entry_strings = [single.split(" ") for single in entries]
             entry_strings_flat = [
                 item for sublist in entry_strings for item in sublist

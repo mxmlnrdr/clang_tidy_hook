@@ -6,7 +6,7 @@ from clang_tidy import _get_executable as clang_tidy_get_exe
 
 class ClangTidyRunner:
     def __init__(self, args: List[str], source_files: List[str]):
-        self.command = clang_tidy_get_exe("clang-tidy").__str__()
+        self.command = str(clang_tidy_get_exe("clang-tidy"))
         self.files = source_files
         self.args = args
 

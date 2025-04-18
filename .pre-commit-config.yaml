@@ -39,7 +39,7 @@ repos:
         language: python
         types: [ python ]
         require_serial: true
-        args: [ --max-line-length=79, --ignore=E203 ]
+        args: [ --max-line-length=79, --ignore=E203, --extend-ignore=W503]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.7.1
